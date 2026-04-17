@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PLC IoT Monitor</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>PLC IoT Monitor</h1>
+        <p class="subtitle">Firebase Realtime industrial telemetry dashboard</p>
+      </div>
+      <div class="connection" id="connectionBadge">Connecting…</div>
+    </header>
+
+    <main class="layout">
+      <section class="panel telemetry">
+        <div class="panel-title-row">
+          <h2>Line A Telemetry</h2>
+          <span id="lastUpdated" class="muted">Last update: --</span>
+        </div>
+
+        <div class="cards" id="telemetryCards">
+          <article class="card">
+            <h3>Temperature</h3>
+            <p id="temperature">-- °C</p>
+          </article>
+          <article class="card">
+            <h3>Pressure</h3>
+            <p id="pressure">-- bar</p>
+          </article>
+          <article class="card">
+            <h3>Motor Speed</h3>
+            <p id="motorSpeed">-- RPM</p>
+          </article>
+          <article class="card">
+            <h3>Flow Rate</h3>
+            <p id="flowRate">-- L/min</p>
+          </article>
+          <article class="card">
+            <h3>Vibration</h3>
+            <p id="vibration">-- mm/s</p>
+          </article>
+          <article class="card status-card">
+            <h3>Machine Status</h3>
+            <p id="machineStatus">--</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel alarms">
+        <h2>Alarms</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Alarm</th>
+              <th>State</th>
+              <th>Threshold</th>
+              <th>Updated</th>
+            </tr>
+          </thead>
+          <tbody id="alarmsTableBody">
+            <tr>
+              <td colspan="4" class="muted">No alarm data yet</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="panel events">
+        <h2>Recent Events</h2>
+        <ul id="eventsList" class="events-list">
+          <li class="muted">No events yet</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footnote">
+      Data path: <code>plc/lineA/*</code>
+    </footer>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
