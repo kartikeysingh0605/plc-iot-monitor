@@ -3,83 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PLC IoT Monitor</title>
+    <title>Human Heart Digital Twin</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="app-bg"></div>
     <header class="topbar">
       <div>
-        <h1>PLC IoT Monitor</h1>
-        <p class="subtitle">Firebase Realtime industrial telemetry dashboard</p>
+        <h1>HUMAN HEART DIGITAL TWIN</h1>
+        <p class="subtitle">Real-time Cardiac Monitoring &amp; Risk Assessment</p>
       </div>
-      <div class="connection" id="connectionBadge">Connecting…</div>
+      <div class="status-wrap">
+        <span class="live-pill" id="liveIndicator">● LIVE</span>
+        <span class="clock" id="clock">--:--:--</span>
+      </div>
     </header>
 
-    <main class="layout">
-      <section class="panel telemetry">
-        <div class="panel-title-row">
-          <h2>Line A Telemetry</h2>
-          <span id="lastUpdated" class="muted">Last update: --</span>
-        </div>
+    <main class="grid">
+      <section class="metrics" id="metricGrid"></section>
 
-        <div class="cards" id="telemetryCards">
-          <article class="card">
-            <h3>Temperature</h3>
-            <p id="temperature">-- °C</p>
-          </article>
-          <article class="card">
-            <h3>Pressure</h3>
-            <p id="pressure">-- bar</p>
-          </article>
-          <article class="card">
-            <h3>Motor Speed</h3>
-            <p id="motorSpeed">-- RPM</p>
-          </article>
-          <article class="card">
-            <h3>Flow Rate</h3>
-            <p id="flowRate">-- L/min</p>
-          </article>
-          <article class="card">
-            <h3>Vibration</h3>
-            <p id="vibration">-- mm/s</p>
-          </article>
-          <article class="card status-card">
-            <h3>Machine Status</h3>
-            <p id="machineStatus">--</p>
-          </article>
+      <section class="panel inputs">
+        <h2>Patient Inputs</h2>
+        <div id="patientInputs" class="list"></div>
+      </section>
+
+      <section class="panel twin">
+        <h2>3D Heart Digital Twin</h2>
+        <div class="twin-body">
+          <div class="heart-stage">
+            <div class="heart-glow"></div>
+            <div id="heart" class="heart">❤️</div>
+            <div class="pulse-ring ring-1"></div>
+            <div class="pulse-ring ring-2"></div>
+            <div class="pulse-ring ring-3"></div>
+          </div>
+          <div class="twin-stats" id="twinStats"></div>
         </div>
       </section>
 
-      <section class="panel alarms">
-        <h2>Alarms</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Alarm</th>
-              <th>State</th>
-              <th>Threshold</th>
-              <th>Updated</th>
-            </tr>
-          </thead>
-          <tbody id="alarmsTableBody">
-            <tr>
-              <td colspan="4" class="muted">No alarm data yet</td>
-            </tr>
-          </tbody>
-        </table>
+      <section class="panel risk">
+        <h2>Overall Risk</h2>
+        <div class="risk-gauge">
+          <div class="gauge-arc"></div>
+          <div class="risk-value" id="riskPercent">0%</div>
+          <p id="riskLevel">Low Risk</p>
+        </div>
+        <ul id="riskItems" class="risk-list"></ul>
       </section>
 
-      <section class="panel events">
-        <h2>Recent Events</h2>
-        <ul id="eventsList" class="events-list">
-          <li class="muted">No events yet</li>
-        </ul>
+      <section class="panel ecg">
+        <h2>ECG Waveform</h2>
+        <canvas id="ecgCanvas" width="800" height="230"></canvas>
+      </section>
+
+      <section class="panel trends">
+        <h2>Trends (Last 10 min)</h2>
+        <canvas id="trendCanvas" width="800" height="230"></canvas>
       </section>
     </main>
-
-    <footer class="footnote">
-      Data path: <code>plc/lineA/*</code>
-    </footer>
 
     <script type="module" src="app.js"></script>
   </body>
